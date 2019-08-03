@@ -36,7 +36,7 @@ ps:注意两个项目都部署在了tomcat上，需要使用不同的端口号�
 ### 1.使用Dubbo后，Bean中的模型必须实现Serializable接口；
 ### 2.PageHelper如果在controller层调用会失效，要写在service中；
 分页插件的原理是利用同一个线程的threadlocal变量传递分页标记。dubbo之后，变量无法传递。
-### 3.POM引入Dubbo后，依赖的spring context版本会和原来的spring版本冲突，可通过exclusion标签解决
+### 3.POM引入Dubbo后，依赖的spring context版本会和原来的spring版本冲突，可通过exclusion标签解决;
     <dependency>
         <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo</artifactId>
@@ -49,15 +49,13 @@ ps:注意两个项目都部署在了tomcat上，需要使用不同的端口号�
         </exclusions>
     </dependency>
     
-### 报错：4.NoSuchMethodError:org.apache.zookeeper.server.quorum.flexible.QuorumMaj.<init>(Ljava/util/Map 
+### 报错：4.NoSuchMethodError:org.apache.zookeeper.server.quorum.flexible.QuorumMaj.<init>(Ljava/util/Map ;
 开始怀疑出现这个错误的原因是因为zookeeper服务器的版本与zookeeper.jar的版本不一致，调整之后依旧不行，将tomcat服务器clean之后再启动项目解决。
 
-### 报错：5.ClassNotFoundException: org.apache.curator.framework.recipes.cache.TreeCacheListener
-加入依赖解决。
-    <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-            <version>4.2.0</version>
-        </dependency>
+### 报错：5.ClassNotFoundException: org.apache.curator.framework.recipes.cache.TreeCacheListener,加入依赖解决。
+    <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-recipes</artifactId>
+        <version>4.2.0</version>
+    </dependency>
      
